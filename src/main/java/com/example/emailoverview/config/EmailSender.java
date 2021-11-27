@@ -80,22 +80,9 @@ public class EmailSender {
             messageHelper.setText("Hi Raju," +
                     "<br/> <br/> Please find the attachment for your reference. <br/><br/>" +
                     "Thanks,<br/> Laxman", true);
-/*            if(StringUtils.isNotEmpty(attachmentUrl) && isHttpUrl(attachmentUrl)) {
-                URL url = new URL(attachmentUrl);
-                String filename = url.getFile();
-                byte fileContent [] = getFileContent(url);
-                messageHelper.addAttachment(filename, new ByteArrayResource(fileContent));
-            }*/
             messageHelper.addAttachment("pug.jpeg",pic);
-//            messageHelper.addInline("cat",new ClassPathResource("static/cat.jpeg").getFile());
 
         };
-
-/*        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(msg,true);
-        mimeMessageHelper.setTo("ankithahjp@gmail.com");
-        mimeMessageHelper.setFrom("ankithajayaprakash@gmail.com");
-        mimeMessageHelper.setSubject("This is a mail with attachment");
-        mimeMessageHelper.addAttachment("doggie.jpeg",pic);*/
         javaMailSender.send(messagePreparator);
         System.out.println("sent mail with attachment");
     }
@@ -109,7 +96,6 @@ public class EmailSender {
         Context context = new Context();
         context.setVariable("name","Laxman");
         context.setVariable("department","Information Technology");
-//        context.setVariable("catImg","/resources/static/cat.jpeg"); // can not send local images
         context.setVariable("catImg","https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554__340.jpg");
 
         String html = templateEngine.process("user-data", context);
